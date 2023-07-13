@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage("Remove all Container") {
       steps {
-        sh "docker rm -f $(docker ps -aq) || true"
+        sh "docker rm -f \$(docker ps -aq) || true"
       }
     }
     stage("Building Dockerfile") {
