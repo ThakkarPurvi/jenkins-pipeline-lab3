@@ -1,17 +1,17 @@
 pipeline {
   agent any
   stages {
-    stage("Remove all Container") {
+    stage("Remove all container") {
       steps {
         sh "docker rm -f \$(docker ps -aq) || true"
       }
     }
-    stage("Building Dockerfile") {
+    stage("Build docker image") {
       steps {
         sh "docker build -t jenkinsapp ."
       }
     }
-    stage("Prod stage") {
+    stage("Run the container") {
       steps {
         sh "docker run -d -p 80:5500 --name jenkins_container jenkinsapp"
       }
